@@ -1,0 +1,17 @@
+#category-list .edit-wrapper {
+  z-index: 100;
+}
+
+#category-show img.info {
+  width: 35px;
+  height: 35px;
+}
+#category-show textarea {
+  resize: none;
+}
+#category-show #storeTask {
+  height: 100%;
+}
+#category-show table tbody tr:last-child td {
+  border-bottom: none !important;
+}

@@ -1,0 +1,29 @@
+body{
+   overflow: hidden;
+}
+
+#right-side{
+   height: 100vh;
+   background-image: url("./../images/auth/background.jpg");
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
+}
+
+img#logo{
+   width: 300px;
+   height: 200px;
+}
+
+#register, #login{
+   margin-top: 50px;
+   margin-bottom: 50px;
+   height: calc(100vh - 100px);
+}
+
+@media only screen and (min-width: 992px) {
+   #register, #login{
+      overflow-y:auto;
+   }
+ }
+

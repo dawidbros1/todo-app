@@ -1,0 +1,20 @@
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#close {
+  position: absolute;
+  right: 15px;
+  color: red;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 21px;
+}
+
+.blue {
+  filter: blur(5px);
+}
