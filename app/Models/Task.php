@@ -31,6 +31,11 @@ class Task extends Model
         return "";
     }
 
+    public function getCanManageAttribute()
+    {
+        return Carbon::now()->lessThanOrEqualTo($this->deadline);
+    }
+
     public function category()
     {
         return $this->belongsTo('App\Models\Category');
