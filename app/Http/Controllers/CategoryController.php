@@ -74,14 +74,23 @@ class CategoryController extends Controller
     }
 
     // Method shows task from category
-    public function show(Category $category)
+    public function show(Category $category, Request $request)
     {
         if (Gate::inspect('manage', $category)->allowed() === false) {
             return $this->unauthorized();
         }
 
+        $status = $request->input('status', "active");
+
+        if ($status != "active" && $status != "finished") {
+            return redirect()->route('category.show', $category);
+        }
+
+        $tasks = ($status === "active") ? $category->activeTasks() : $category->finishedTasks();
+
         return view('category.show', [
             'category' => $category,
+            'tasks' => $tasks->get(),
             'deadline' => Carbon::now('Europe/Warsaw'),
         ]);
     }

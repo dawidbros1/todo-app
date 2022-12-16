@@ -47,6 +47,18 @@
             </form>
         </div>
 
+        <div class="d-flex text-center fw-bold border mb-2 p-2">
+            {{-- <div>Wszystkie zadania</div> --}}
+            <a href="{{ route('category.show', ['category' => $category, 'status' => 'active']) }}"
+                class="w-50 border-end text-decoration-none">
+                <div>Zadania nie ukończone</div>
+            </a>
+            <a href="{{ route('category.show', ['category' => $category, 'status' => 'finished']) }}"
+                class="w-50 border-end text-decoration-none">
+                <div>Zadanie ukończone</div>
+            </a>
+        </div>
+
         <table class="table">
             <thead>
                 <tr>
@@ -60,7 +72,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($category->tasks() as $index => $task)
+                @foreach ($tasks as $index => $task)
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td class="fw-bold">{{ $task->name }}</td>
@@ -79,15 +91,17 @@
                         <td>
                             @if ($task->status == 'active')
                                 <div class="d-flex text-right">
-                                    <form action="{{ route('task.delete', $task) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Usuń</button>
-                                    </form>
+                                    @if ($task->can_manage === true)
+                                        <form action="{{ route('task.delete', $task) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Usuń</button>
+                                        </form>
 
-                                    <a href="{{ route('task.edit', $task) }}">
-                                        <button type="submit" class="btn btn-primary mx-2">EDYTUJ</button>
-                                    </a>
+                                        <a href="{{ route('task.edit', $task) }}">
+                                            <button type="submit" class="btn btn-primary mx-2">EDYTUJ</button>
+                                        </a>
+                                    @endif
 
                                     <form action="{{ route('task.finish', $task) }}" method="POST" class="d-inline">
                                         @csrf
