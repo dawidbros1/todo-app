@@ -14,11 +14,13 @@
       resize: none;
    }
 
-   #storeTask {
-      height: 100%;
-   }
-
    table tbody tr:last-child td {
       border-bottom: none !important;
    }
+}
+
+#task-form{
+    #storeTask {
+        height: 100%;
+     }
 }

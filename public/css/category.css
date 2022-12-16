@@ -9,9 +9,10 @@
 #category-show textarea {
   resize: none;
 }
-#category-show #storeTask {
-  height: 100%;
-}
 #category-show table tbody tr:last-child td {
   border-bottom: none !important;
+}
+
+#task-form #storeTask {
+  height: 100%;
 }
