@@ -7,7 +7,7 @@
 @section('content')
     <div id="category-show" class="col-9 mx-auto">
         <h1 class="text-center">{{ $category->name }}</h1>
-        <div>
+        <div id="task-form">
             <form method="post" action="{{ route('task.store', $category) }}">
                 @csrf
 

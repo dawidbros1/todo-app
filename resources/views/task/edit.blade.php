@@ -1,13 +1,13 @@
 @extends('layouts/app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/task.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/category.css') }}">
 @endsection('css')
 
 @section('content')
     <div class="container">
         <h1 class="text-center">Edycja zadania</h1>
-        <div>
+        <div id="task-form">
             <form method="post" action="{{ route('task.update', $task) }}">
                 @csrf
                 @method('PUT')
@@ -25,7 +25,8 @@
 
                         <div class="col-3">
                             <input type="datetime-local" id="deadline" name="deadline"
-                                value="{{ old('deadline', $task->deadline) }}" class="form-control" timezone="UTC+1" />
+                                value="{{ old('deadline', $task->deadline->format('Y-m-d\TH:i')) }}" class="form-control"
+                                timezone="UTC+1" />
 
                             @component('components.form.error', ['name' => 'deadline'])
                             @endcomponent
