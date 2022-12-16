@@ -12,6 +12,7 @@ class Task extends Model
     public $timestamps = false;
     protected $table = 'tasks';
     protected $dates = ['created_at', 'deadline', 'finished_at'];
+    protected $fillable = ['name', 'description', 'deadline', 'category_id', 'finished_at', 'status'];
 
     public function getColorAttribute()
     {
