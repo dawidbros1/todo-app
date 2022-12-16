@@ -10,7 +10,11 @@
 @endsection('css')
 
 @section('content')
-    <div id="category-list" class="row px-3 gx-3 my-2">
+    @php
+        $id = session('id') ?? null;
+    @endphp
+
+    <div id="category-list" class="row px-3 gx-3 my-2 @if ($id) blur @endif">
         <h1 class="text-center mb-3">Kategorie zadań</h1>
 
         <div class="col-3 mb-3">
@@ -25,9 +29,6 @@
                             <input type="text" class="form-control w-75" name="name" placeholder="Nazwa kategorii">
                             <button type="submit" class="btn btn-primary offset-1">Dodaj</button>
                         </div>
-
-                        @component('components.form.error', ['name' => 'name'])
-                        @endcomponent
                     </form>
                 </div>
             </div>
@@ -56,15 +57,20 @@
     </div>
 
     @foreach ($categories as $category)
-        <div class="center w-50 bg-light p-3 border d-none edit-wrapper" data-id="{{ $category->id }}">
+        <div class="center w-50 bg-light p-3 border edit-wrapper @if ($id !== $category->id) d-none @endif">
             <h1 class="text-center fs-4">Edytuj kategorię</h1>
             <form method="post" action="{{ route('category.update', $category) }}">
                 @csrf
                 @method('PUT')
-                <div class="input-group my-3">
+                <div class="input-group my-2">
                     <span class="input-group-text"></span>
-                    <input type="text" value="{{ $category->name }}" name="name" class="form-control input-name"
-                        autocomplete="name" placeholder="Nazwa kategorii" required autofocus />
+                    <input type="text" value="{{ $id === $category->id ? session('value') : $category->name }}"
+                        name="name" class="form-control input-name" autocomplete="name" placeholder="Nazwa kategorii"
+                        required autofocus />
+                    @if ($id == $category->id)
+                        @component('components.form.error', ['name' => 'name'])
+                        @endcomponent
+                    @endif
                 </div>
 
                 <div class="d-flex">
