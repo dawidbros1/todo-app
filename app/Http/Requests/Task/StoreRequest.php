@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'between:3,32'],
-            'description' => ['required', 'between:3,32'],
+            'description' => ['required', 'between:3,255'],
             'deadline' => ['required', 'date_format:Y-m-d\TH:i', 'after:now'],
         ];
     }
