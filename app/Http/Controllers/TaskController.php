@@ -36,6 +36,10 @@ class TaskController extends Controller
             return $this->unauthorized();
         }
 
+        if ($task->can_manage === false) {
+            return $this->cannotManage($task);
+        }
+
         $request->validated();
 
         $task->update([
@@ -51,6 +55,10 @@ class TaskController extends Controller
     {
         if (Gate::inspect('manage', $task)->allowed() === false) {
             return $this->unauthorized();
+        }
+
+        if ($task->can_manage === false) {
+            return $this->cannotManage($task);
         }
 
         return view('task.edit', [
@@ -85,6 +93,11 @@ class TaskController extends Controller
     private function unauthorized()
     {
         return redirect()->route('category.index')->with('error', "Brak uprawnień do wykonania akcji");
+    }
+
+    private function cannotManage($task)
+    {
+        return redirect()->route('category.show', $task->category)->with('error', "Nie można edytować zadań po terminie ukończenia");
     }
 }
 
