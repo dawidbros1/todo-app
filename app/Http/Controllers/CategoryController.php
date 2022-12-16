@@ -52,8 +52,10 @@ class CategoryController extends Controller
         $validator = Validator::make($request->all(), $store->rules(), $store->messages());
 
         if ($validator->fails()) {
-            $error = $validator->errors()->messages()['name'][0];
-            return back()->withFragment('#' . $category->id . "#" . $request->input('name'))->with('error', $error);
+            return back()
+                ->with('id', $category->id)
+                ->with('value', $request->input('name'))
+                ->withErrors($validator->errors());
         }
 
         $category->update(['name' => $request->input('name')]);
