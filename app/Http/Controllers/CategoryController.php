@@ -11,9 +11,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
+# php artisan make:controller CategoryController
 class CategoryController extends Controller
 {
-    // Method displays all categories
+    # Method displays all categories for current logged in user
     public function index()
     {
         $categories = Category::where('user_id', Auth::id())->get();
@@ -23,7 +24,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    // Metoda adds category to DB
+    # Metoda adds category to DB
     public function store(Request $request)
     {
         $store = new StoreRequest();
@@ -41,7 +42,7 @@ class CategoryController extends Controller
         return redirect()->route('category.index')->withSuccess('Kategoria została dodana');
     }
 
-    // Method updates data in category
+    # Method updates data in category
     public function update(Request $request, Category $category)
     {
         if (Gate::inspect('manage', $category)->allowed() === false) {
@@ -62,7 +63,7 @@ class CategoryController extends Controller
         return redirect()->route('category.index')->withSuccess("Kategoria zostła zaktualizowana");
     }
 
-    // Method deletes category
+    # Method deletes category
     public function delete(Category $category)
     {
         if (Gate::inspect('manage', $category)->allowed() === false) {
@@ -73,7 +74,7 @@ class CategoryController extends Controller
         return redirect()->route('category.index')->withSuccess("Kategoria zostala usunięta");
     }
 
-    // Method shows task from category
+    # Method shows tasks from category
     public function show(Category $category, Request $request)
     {
         if (Gate::inspect('manage', $category)->allowed() === false) {
@@ -95,6 +96,8 @@ class CategoryController extends Controller
         ]);
     }
 
+    # Method redirect user to route('category.index')
+    # when user don't have permissions to category
     private function unauthorized()
     {
         return redirect()->route('category.index')->with('error', "Brak uprawnień do wykonania akcji");

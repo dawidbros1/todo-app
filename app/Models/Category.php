@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+# php artisan make:model Category
 class Category extends Model
 {
     use HasFactory;
@@ -22,6 +23,7 @@ class Category extends Model
         return $this->belongsTo(User::class);
     }
 
+    # Methor return all tasks
     public function tasks()
     {
         $activeTasks = $this->activeTasks;
@@ -29,6 +31,7 @@ class Category extends Model
         return $activeTasks->concat($finishedTasks);
     }
 
+    # Method returns tasks when task->status === "active"
     public function activeTasks()
     {
         return $this->hasMany(Task::class)
@@ -36,6 +39,7 @@ class Category extends Model
             ->orderBy('deadline');
     }
 
+    # Method returns tasks when task->status === "finished"
     public function finishedTasks()
     {
         return $this->hasMany(Task::class)

@@ -11,14 +11,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
 
+# php artisan make:controller AuthController
 class AuthController extends Controller
 {
+    # Method returns view
     public function register()
     {
         return view('auth/register');
     }
 
-    // Method adds new user to DB
+    # Method adds new user to DB
     public function registerSubmit(RegisterRequest $request)
     {
         $data = $request->validated();
@@ -32,12 +34,13 @@ class AuthController extends Controller
         return redirect()->route('login')->withSuccess('Konto zostało utworzone');
     }
 
+    # Method returns view
     public function login(Request $request)
     {
         return view('auth/login');
     }
 
-    // Method logs user in
+    # Method logs user in
     public function loginSubmit(LoginRequest $request)
     {
         $credentials = $request->validated(); // email + password
@@ -51,7 +54,7 @@ class AuthController extends Controller
         }
     }
 
-    // Method logouts user
+    # Method logouts user
     public function logout()
     {
         Session::flush();

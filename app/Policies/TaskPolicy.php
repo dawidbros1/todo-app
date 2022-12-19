@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
+# php artisan make:policy TaskPolicy
+# add policy in AuthServiceProvider.php
 class TaskPolicy
 {
     use HandlesAuthorization;
@@ -19,3 +21,12 @@ class TaskPolicy
         : Response::deny();
     }
 }
+
+# How use TaskPolicy
+#
+# In controller method use
+#   if (Gate::inspect('manage', $task)->allowed() === false) {
+#       return $this->unauthorized();
+#   }
+#
+# More in docs

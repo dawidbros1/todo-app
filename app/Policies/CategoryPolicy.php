@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
+# php artisan make:policy CategoryPolicy
+# add policy in AuthServiceProvider.php
 class CategoryPolicy
 {
     use HandlesAuthorization;

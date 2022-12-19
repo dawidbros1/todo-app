@@ -4,6 +4,7 @@ namespace App\Http\Requests\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+# php artisan make:request Category/StoreRequest
 class StoreRequest extends FormRequest
 {
     /**
@@ -13,7 +14,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return true; // set true
     }
 
     /**
@@ -37,3 +38,16 @@ class StoreRequest extends FormRequest
         ];
     }
 }
+
+# How use StoreRequest
+#
+# In controller method use
+# public function store(Request $request, $category)
+# ...
+# $store = new StoreRequest();
+# $validator = Validator::make($request->all(), $store->rules(), $store->messages());
+#
+#  if ($validator->fails()) {
+#       code when validation is failed
+#  }
+#

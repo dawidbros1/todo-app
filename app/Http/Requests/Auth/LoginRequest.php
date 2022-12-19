@@ -4,6 +4,7 @@ namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+# php artisan make:request Auth/LoginRequest
 class LoginRequest extends FormRequest
 {
     /**
@@ -13,7 +14,7 @@ class LoginRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return true; // set true
     }
 
     /**
