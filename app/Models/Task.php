@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+# php artisan make:model Task
 class Task extends Model
 {
     use HasFactory;
@@ -14,6 +15,7 @@ class Task extends Model
     protected $dates = ['created_at', 'deadline', 'finished_at'];
     protected $fillable = ['name', 'description', 'deadline', 'category_id', 'finished_at', 'status'];
 
+    # Method returns color to view
     public function getColorAttribute()
     {
         if ($this->finished_at === null) {
@@ -31,8 +33,13 @@ class Task extends Model
         return "";
     }
 
+    # WHEN [ now() > task->deadline ] or [ task is finished ] return false
     public function getCanManageAttribute()
     {
+        if ($this->status === "finished") {
+            return false;
+        }
+
         return Carbon::now()->lessThanOrEqualTo($this->deadline);
     }
 
