@@ -36,7 +36,7 @@ TODO project is a simple task management app. You can create multiple categories
 
 `php artisan db:seed --class=UserSeeder` The command adds users
 
-`php artisan db:seed --class=CategorySeeder` The command add categories
+`php artisan db:seed --class=CategorySeeder` The command adds categories
 
-`php artisan db:seed --class=TaskSeeder` The command add tasks
+`php artisan db:seed --class=TaskSeeder` The command adds tasks
 
