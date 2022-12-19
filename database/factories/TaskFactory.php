@@ -7,6 +7,8 @@ use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+# php artisan make:factory TaskFactory
+
 class TaskFactory extends Factory
 {
     protected $model = Task::class;

@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Auth\User;
 
+# php artisan make:factory CategoryFactory
 class CategoryFactory extends Factory
 {
     protected $model = Category::class;

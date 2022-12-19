@@ -11,6 +11,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+# php artisan make:seeder DataSeeder
 class DataSeeder extends Seeder
 {
     /**
@@ -22,11 +23,11 @@ class DataSeeder extends Seeder
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        Task::truncate();
-        Category::truncate();
-        User::truncate();
+        Task::truncate(); # delete all tasks
+        Category::truncate(); # delete all categories
+        User::truncate(); # delete all users
 
-        $factory = new UserFactory();
+        $factory = new UserFactory(); # init factory
 
         $data = [
             [
@@ -40,13 +41,15 @@ class DataSeeder extends Seeder
         ];
 
         foreach ($data as $item) {
-            $user = $factory->create($item);
+            $user = $factory->create($item); # add user to database by method create()
             $this->createRelationData($user);
         }
     }
 
     private function createRelationData($user)
     {
+        # count(x) => number of records
+        # create(['user_id' => $user->id] overwrite default user_id in UserFactory()
         $categories = (new CategoryFactory())->count(10)->create(['user_id' => $user->id]);
 
         foreach ($categories as $category) {

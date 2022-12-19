@@ -6,6 +6,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+# php artisan make:seeder UserSeeder
 class UserSeeder extends Seeder
 {
 

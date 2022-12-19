@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Task;
 use Illuminate\Database\Seeder;
 
+# php artisan make:seeder TaskSeeder
 class TaskSeeder extends Seeder
 {
     /**

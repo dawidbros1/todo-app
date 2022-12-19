@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Auth\User;
 
+# php artisan make:seeder CategorySeeder
 class CategorySeeder extends Seeder
 {
     /**
